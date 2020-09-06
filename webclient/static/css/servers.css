@@ -1,0 +1,76 @@
+
+#server-info-table {
+    font-size: 12px;
+	table-layout: fixed;
+	width: 976px;
+}
+
+#server-info-table th {
+    width: 150px;
+}
+
+#server-table {
+	font-size: 12px;
+	table-layout: fixed;
+	width: 976px;
+}
+
+#server-table th {
+	text-align: left;
+	text-decoration: underline;
+}
+#server-table td, #server-info-table td, #server-info-table th {
+	border-bottom: 1px solid #FFFFFF;
+	border-top: 1px solid #FFFFFF;
+	padding: 1px 3px 1px 3px;
+	text-align: left;
+}
+
+#server-table .odd, #server-info-table .odd {
+	background-color: #EEEEEE;
+}
+#server-table .even, #server-info-table .even {
+	background-color: #FFFFFF;
+}
+#server-table tr.odd:hover, #server-table tr.even:hover, #server-info-table tr.odd:hover, #server-info-table tr.even:hover, #server-table tr.odd:hover td, #server-table tr.even:hover td {
+	background-color: #CCCCCC;
+	border-bottom: 1px dashed #000000;
+	border-top: 1px dashed #000000;
+}
+
+#server-table .image {
+	background-color: #FFFFFF;
+	border-bottom: 1px solid #FFFFFF;
+	border-top: 1px solid #FFFFFF;
+}
+
+#server-table .odd:hover .image, #server-table .even:hover .image {
+	background-color: #FFFFFF;
+	border-bottom: 1px dashed #000000;
+	border-top: 1px dashed #000000;
+}
+
+#server-table .dedicated {
+	width: 15px;
+}
+#server-table .name {
+	width: 562px;
+}
+#server-table .address {
+	width: 100px;
+}
+#server-table .clients {
+	width: 70px;
+}
+#server-table .companies {
+	width: 70px;
+}
+#server-table .version {
+	width: 120px;
+}
+#server-table .icon-password {
+	width: 12px;
+}
+#server-table .icon-grf {
+	width: 15px;
+}
