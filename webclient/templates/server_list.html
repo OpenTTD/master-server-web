@@ -1,0 +1,64 @@
+{% set selected_nav = filter %}
+{% extends 'base.html' %}
+{% block header %}
+    <h1>{% block title %}{{ filter[0].upper() + filter[1:] }} - Server List{% endblock %}</h1>
+{% endblock %}
+{% block content %}
+
+<table id="server-table">
+<thead>
+    <tr>
+        <th class="dedicated"></th>
+        <th class="name">Name</th>
+        <th class="clients">Clients</th>
+        <th class="companies">Companies</th>
+        <th class="version">Version</th>
+        <th class="icon-password"></th>
+        <th class="icon-grf"></th>
+    </tr>
+</thead>
+<tbody>
+    <p>Servers registered as on {{ expire }} UTC. There are {{ clients }} clients, {{ servers_ipv4 }} IPv4 servers and {{ servers_ipv6 }} IPv6 servers in this list.</p>
+{% for server in servers %}
+    <tr class="{{ loop.cycle('odd', 'even') }}">
+        <td class="image">
+            {% if server['info']['dedicated'] == 1 %}
+                <img src="/static/img/server-dedicated.png" alt="Dedicated" title="Dedicated">
+            {% else %}
+                <img src="/static/img/server-client.png" alt="Non-Dedicated" title="Non-Dedicated">
+            {% endif %}
+        </td>
+        <td>
+            <div class="nowrap" style="width: 562px;">
+                <a href="/server/{{ server['server_id'] }}">
+                    {{ server['info']['server_name'] }}
+                </a>
+            </div>
+        </td>
+        <td>
+            {{ server['info']['clients_on'] }} / {{ server['info']['clients_max'] }}
+        </td>
+        <td>
+            {{ server['info']['companies_on'] }} / {{ server['info']['companies_max'] }}
+        </td>
+        <td>
+            <div class="nowrap" style="width: 120px;">
+                <a href="/listing/{{ server['info']['server_revision'] }}">{{ server['info']['server_revision'] }}</a>
+            </div>
+        </td>
+        <td class="image">
+            {% if server['info']['use_password'] == 1 %}
+                <img src="/static/img/server-lock.png" alt="Password" title="Password Protected">
+            {% endif %}
+        </td>
+        <td class="image">
+            {% if server['info']['num_grfs'] > 0 %}
+                <img src="/static/img/server-grf.png" alt="GRF" title="NewGRFs Required">
+            {% endif %}
+        </td>
+    </tr>
+{% endfor %}
+</tbody>
+</table>
+
+{% endblock %}

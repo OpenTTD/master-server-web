@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}{% endblock %} - OpenTTD</title>
+    <link rel="icon" href="/static/favicon.ico" type="image/icon" />
+    <link rel="stylesheet" href="/static/css/base.css" />
+    <link rel="stylesheet" href="/static/css/page.css" />
+    <link rel="stylesheet" href="/static/css/servers.css" />
+</head>
+<body>
+<header id="header">
+    <div id="header-left"></div>
+    <div id="header-right"></div>
+    <div id="header-logo">
+        <div id="openttd-logo">
+            <div id="openttd-logo-text-servers"><a href="/"><img src="/static/img/openttd-logo-servers.png" alt="Public Servers"></a></div>
+        </div>
+    </div>
+</header>
+<nav id="navigation">
+    <div id="navigation-left"></div>
+    <div id="navigation-right"></div>
+    <ul id="navigation-bar">
+        <li {% if selected_nav == "all" %}class="selected"{% endif %}><a href="/listing/all">All servers</a></li>
+    </ul>
+</nav>
+<div id="content-main">
+<div id="section-full">
+<header class="section-header">
+{% block header %}{% endblock %}
+</header>
+<main class="section-item">
+<div class="content">
+{% if messages %}
+<ul id="system-notices">
+    {% for message in messages %}
+    <li>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% block content %}{% endblock %}
+</div>
+</main>
+</div>
+</div>
+<footer id="footer">
+    <div id="content-bottom-links">
+        <a href="https://www.openttd.org/policy.html">Privacy Policy</a>
+    </div>
+    <div id="content-bottom-copyright">
+        Copyright &copy; 2005-{{ globals.copyright_year }} OpenTTD Team
+    </div>
+</footer>
+</body>
+</html>
