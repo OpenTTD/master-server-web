@@ -9,7 +9,7 @@ from ..helpers import (
 
 @app.route("/")
 def root():
-    return redirect("servers", filter="all")
+    return redirect("servers_all")
 
 
 @app.route("/error")

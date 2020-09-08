@@ -1,7 +1,15 @@
-{% set selected_nav = filter %}
+{% if not filter %}
+{% set selected_nav = "all" %}
+{% endif %}
 {% extends 'base.html' %}
 {% block header %}
-    <h1>{% block title %}{{ filter[0].upper() + filter[1:] }} - Server List{% endblock %}</h1>
+    <h1>{% block title %}
+        {% if filter %}
+            Server List - Version {{ filter[0].upper() + filter[1:] }}
+        {% else %}
+            Server List
+        {% endif %}
+    {% endblock %}</h1>
 {% endblock %}
 {% block content %}
 

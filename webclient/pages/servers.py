@@ -174,8 +174,7 @@ def _sort_servers(servers):
     servers.sort(key=lambda x: _split_version(x["info"]["server_revision"]), reverse=True)
 
 
-@app.route("/listing/<filter>")
-def servers(filter):
+def _list_servers(filter):
     global _server_list_cache
 
     if _server_list_cache is None or time.time() > _server_list_cache["expire"]:
@@ -192,7 +191,7 @@ def servers(filter):
         }
 
     servers = _server_list_cache["servers"]
-    if filter != "all":
+    if filter:
         servers = [server for server in servers if server["info"]["server_revision"].startswith(filter)]
 
     expire = datetime.utcfromtimestamp(_server_list_cache["cached"]).strftime("%Y-%m-%d %H:%M:%S") + " UTC"
@@ -211,6 +210,16 @@ def servers(filter):
         languages=LANGUAGES,
         mapsets=MAPSETS,
     )
+
+
+@app.route("/listing")
+def servers_all():
+    return _list_servers(filter=None)
+
+
+@app.route("/listing/<filter>")
+def servers(filter):
+    return _list_servers(filter=filter)
 
 
 @app.route("/server/<server_id>")
