@@ -26,7 +26,7 @@
     </tr>
 </thead>
 <tbody>
-    <p>Servers registered as on {{ expire }} UTC. There are {{ clients }} clients, {{ servers_ipv4 }} IPv4 servers and {{ servers_ipv6 }} IPv6 servers in this list.</p>
+    <p>Servers registered as on {{ expire }}. There are {{ clients }} clients, {{ servers_ipv4 }} IPv4 servers and {{ servers_ipv6 }} IPv6 servers in this list.</p>
 {% for server in servers %}
     <tr class="{{ loop.cycle('odd', 'even') }}">
         <td class="image">
