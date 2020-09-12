@@ -190,15 +190,14 @@ def _list_servers(filter):
 
         _server_list_cache = {
             "servers": data["servers"],
-            "cached": data["expire"],
-            "expire": time.time() + CACHE_EXPIRE_TIME,
+            "expire": data["expire"] + 1,  # Allow some clock-drift
         }
 
     servers = _server_list_cache["servers"]
     if filter:
         servers = [server for server in servers if server["info"]["server_revision"].startswith(filter)]
 
-    expire = datetime.utcfromtimestamp(_server_list_cache["cached"]).strftime("%Y-%m-%d %H:%M:%S") + " UTC"
+    expire = datetime.utcfromtimestamp(_server_list_cache["expire"]).strftime("%Y-%m-%d %H:%M:%S") + " UTC"
     clients = sum([server["info"]["clients_on"] for server in servers])
     servers_ipv4 = len([server for server in servers if "ipv4" in server])
     servers_ipv6 = len([server for server in servers if "ipv6" in server])
@@ -238,12 +237,13 @@ def server_entry(server_id):
 
         _server_entry_cache[server_id] = {
             "server": server,
-            "cached": data["expire"],
-            "expire": time.time() + CACHE_EXPIRE_TIME,
+            "expire": data["expire"] + 1,  # Allow some clock-drift
         }
 
     server = _server_entry_cache[server_id]["server"]
     if server is None:
         return redirect("error", message="This server (no longer) exists")
 
-    return template("server_entry.html", server=server, languages=LANGUAGES, mapsets=MAPSETS)
+    expire = datetime.utcfromtimestamp(_server_entry_cache[server_id]["expire"]).strftime("%Y-%m-%d %H:%M:%S") + " UTC"
+
+    return template("server_entry.html", server=server, expire=expire, languages=LANGUAGES, mapsets=MAPSETS)
