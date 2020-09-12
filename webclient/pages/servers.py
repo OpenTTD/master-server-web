@@ -171,7 +171,11 @@ def _split_version(raw_version):
 
 
 def _sort_servers(servers):
-    servers.sort(key=lambda x: _split_version(x["info"]["server_revision"]), reverse=True)
+    servers.sort(
+        key=lambda x: _split_version(x["info"]["server_revision"])
+        + [x["info"]["clients_on"], x["info"]["companies_on"]],
+        reverse=True,
+    )
 
 
 def _list_servers(filter):
