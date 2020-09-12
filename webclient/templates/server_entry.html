@@ -84,7 +84,7 @@
                 {% endif %}
                 {% if "ipv4" in server and "ipv6" in server %}<br>{% endif %}
                 {% if "ipv6" in server %}
-                {{ server["ipv6"]["ip"] }}:{{ server["ipv6"]["port"] }}
+                [{{ server["ipv6"]["ip"] }}]:{{ server["ipv6"]["port"] }}
                 {% endif %}
             </td>
         </tr>
