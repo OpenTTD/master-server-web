@@ -3,6 +3,7 @@
     <h1>{% block title %}{{ server["info"]["server_name"] }} {% endblock %}</h1>
 {% endblock %}
 {% block content %}
+<p class="cached">This information is cached till {{ expire }}.</p>
 <table id="server-info-table">
     <tbody>
         <tr class="odd">
@@ -126,5 +127,5 @@
             </td>
         </tr>
     </tbody>
-  </table>
+</table>
 {% endblock %}
