@@ -8,8 +8,6 @@ from .helpers import (
     redirect,
 )
 
-_client_id = None
-
 
 def api_call(method, path, params=None, json=None, session=None, return_errors=False):
     url = api_host() + "/" + "/".join(urllib.parse.quote(p, safe="") for p in path)
