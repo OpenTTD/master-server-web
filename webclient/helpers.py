@@ -2,12 +2,12 @@ import click
 import datetime
 import flask
 
-from .click import click_additional_options
+from openttd_helpers import click_helper
 
 _api_url = None
 
 
-@click_additional_options
+@click_helper.extend
 @click.option(
     "--api-url",
     help="Master Server API URL.",
