@@ -151,23 +151,25 @@ def _split_version(raw_version):
     """
 
     if "-" in raw_version:
-        version, _, extra = raw_version.partition("-")
+        version, *extra = raw_version.split("-")
+        priority = 5
     else:
         version = raw_version
-        extra = "stable"
+        extra = ["stable"]
+        priority = 10
 
     # Check if this is most likely an official release and sort it correctly.
     version_parts = version.split(".")
-    if len(version_parts) == 3:
-        return [int(p) for p in version_parts] + [extra]
+    if len(version_parts) == 3 and all([p.isdecimal() for p in version_parts]):
+        return [priority] + [int(p) for p in version_parts] + ["official"] + ["-".join(extra)]
 
     # Check if this is a patchpack like jgrpp-0.31.0.
-    version_parts = extra.split(".")
-    if len(version_parts) == 3:
-        return [int(p) for p in version_parts] + [version]
+    version_parts = extra[0].split(".")
+    if len(version_parts) == 3 and all([p.isdecimal() for p in version_parts]):
+        return [priority] + [int(p) for p in version_parts] + [version] + ["-".join(extra[1:])]
 
     # We did not recognize what this is, so just fall back to string comparison.
-    return [0, 0, 0, raw_version]
+    return [0, 0, 0, 0, "unknown", raw_version]
 
 
 def _sort_servers(servers):
