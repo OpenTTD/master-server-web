@@ -37,6 +37,8 @@ def api_call(method, path, params=None, json=None, session=None, return_errors=F
             if return_errors:
                 return (None, "Data not found")
             error_response = redirect("error", message="Data not found")
+        elif r.status_code == 400 and path[0] == "server":
+            error_response = redirect("error", message="Unknown server")
         elif return_errors:
             error = str(r.json().get("errors", "API call failed"))
             return (None, error)
