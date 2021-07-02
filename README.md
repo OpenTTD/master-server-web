@@ -1,10 +1,10 @@
 # Master Server web front-end
 
-[![GitHub License](https://img.shields.io/github/license/OpenTTD/master-server-web)](https://github.com/OpenTTD/master-server-web/blob/master/LICENSE)
+[![GitHub License](https://img.shields.io/github/license/OpenTTD/master-server-web)](https://github.com/OpenTTD/master-server-web/blob/main/LICENSE)
 [![GitHub Tag](https://img.shields.io/github/v/tag/OpenTTD/master-server-web?include_prereleases&label=stable)](https://github.com/OpenTTD/master-server-web/releases)
-[![GitHub commits since latest release](https://img.shields.io/github/commits-since/OpenTTD/master-server-web/latest/master)](https://github.com/OpenTTD/master-server-web/commits/master)
+[![GitHub commits since latest release](https://img.shields.io/github/commits-since/OpenTTD/master-server-web/latest/main)](https://github.com/OpenTTD/master-server-web/commits/main)
 
-[![GitHub Workflow Status (Testing)](https://img.shields.io/github/workflow/status/OpenTTD/master-server-web/Testing/master?label=master)](https://github.com/OpenTTD/master-server-web/actions?query=workflow%3ATesting)
+[![GitHub Workflow Status (Testing)](https://img.shields.io/github/workflow/status/OpenTTD/master-server-web/Testing/main?label=main)](https://github.com/OpenTTD/master-server-web/actions?query=workflow%3ATesting)
 [![GitHub Workflow Status (Publish Image)](https://img.shields.io/github/workflow/status/OpenTTD/master-server-web/Publish%20image?label=publish)](https://github.com/OpenTTD/master-server-web/actions?query=workflow%3A%22Publish+image%22)
 [![GitHub Workflow Status (Deployments)](https://img.shields.io/github/workflow/status/OpenTTD/master-server-web/Deployment?label=deployment)](https://github.com/OpenTTD/master-server-web/actions?query=workflow%3A%22Deployment%22)
 
