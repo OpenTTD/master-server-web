@@ -97,12 +97,6 @@ def _fix_server_info(server):
     # Make dates human readable.
     server["info"]["start_date"] = _date_to_string(server["info"]["start_date"])
     server["info"]["game_date"] = _date_to_string(server["info"]["game_date"])
-    server["time_first_seen"] = (
-        datetime.utcfromtimestamp(server["time_first_seen"]).strftime("%Y-%m-%d %H:%M:%S") + " UTC"
-    )
-    server["time_last_seen"] = (
-        datetime.utcfromtimestamp(server["time_last_seen"]).strftime("%Y-%m-%d %H:%M:%S") + " UTC"
-    )
 
 
 def _split_version(raw_version):
