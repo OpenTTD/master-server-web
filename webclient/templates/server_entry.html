@@ -1,15 +1,33 @@
 {% extends 'base.html' %}
 {% block header %}
-    <h1>{% block title %}{{ server["info"]["server_name"] }} {% endblock %}</h1>
+    <h1>{% block title %}{{ server["info"]["name"] }} {% endblock %}</h1>
 {% endblock %}
 {% block content %}
 <p class="cached">This information is cached till {{ expire }}.</p>
 <table id="server-info-table">
     <tbody>
         <tr class="odd">
-            <th>Online:</th>
+            <th>Server address(es):</th>
             <td>
-                {% if server["online"] %}
+                {% if "ipv4" in server %}
+                {{ server["ipv4"]["ip"] }}:{{ server["ipv4"]["port"] }}
+                {% endif %}
+                {% if "ipv4" in server and "ipv6" in server %}<br>{% endif %}
+                {% if "ipv6" in server %}
+                [{{ server["ipv6"]["ip"] }}]:{{ server["ipv6"]["port"] }}
+                {% endif %}
+            </td>
+        </tr>
+        <tr class="even">
+            <th>Server version:</th>
+            <td>
+                {{ server["info"]["openttd_version"] }}
+            </td>
+        </tr>
+        <tr class="odd">
+            <th>Server password:</th>
+            <td>
+                {% if server["info"]["use_password"] == 1 %}
                     Yes
                 {% else %}
                     No
@@ -17,15 +35,15 @@
             </td>
         </tr>
         <tr class="even">
-            <th>First seen:</th>
+            <th>Start date:</th>
             <td>
-                {{ server["time_first_seen"] }}
+                {{ server["info"]["start_date"] }}
             </td>
         </tr>
         <tr class="odd">
-            <th>Last queried:</th>
+            <th>Current date:</th>
             <td>
-                {{ server["time_last_seen"] }}
+                {{ server["info"]["game_date"] }}
             </td>
         </tr>
         <tr class="even">
@@ -47,21 +65,9 @@
             </td>
         </tr>
         <tr class="odd">
-            <th>Language:</th>
-            <td>
-                {{ languages[server["info"]["server_lang"]] }}
-            </td>
-        </tr>
-        <tr class="even">
-            <th>Map name:</th>
-            <td>
-                {{ server["info"]["map_name"] }}
-            </td>
-        </tr>
-        <tr class="odd">
             <th>Landscape:</th>
             <td>
-                {{ mapsets[server["info"]["map_set"]] }}
+                {{ mapsets[server["info"]["map_type"]] }}
             </td>
         </tr>
         <tr class="even">
@@ -71,59 +77,19 @@
             </td>
         </tr>
         <tr class="odd">
-            <th>Server version:</th>
-            <td>
-                {{ server["info"]["server_revision"] }}
-            </td>
-        </tr>
-        <tr class="even">
-            <th>Server address(es):</th>
-            <td>
-                {% if "ipv4" in server %}
-                {{ server["ipv4"]["ip"] }}:{{ server["ipv4"]["port"] }}
-                {% endif %}
-                {% if "ipv4" in server and "ipv6" in server %}<br>{% endif %}
-                {% if "ipv6" in server %}
-                [{{ server["ipv6"]["ip"] }}]:{{ server["ipv6"]["port"] }}
-                {% endif %}
-            </td>
-        </tr>
-        <tr class="odd">
             <th>Dedicated server:</th>
             <td>
-                {% if server["info"]["dedicated"] == 1 %}
+                {% if server["info"]["is_dedicated"] == 1 %}
                     Yes
                 {% else %}
                     No
                 {% endif %}
-            </td>
-        </tr>
-        <tr class="even">
-            <th>Server password:</th>
-            <td>
-                {% if server["info"]["use_password"] == 1 %}
-                    Yes
-                {% else %}
-                    No
-                {% endif %}
-            </td>
-        </tr>
-        <tr class="odd">
-            <th>Start date:</th>
-            <td>
-                {{ server["info"]["start_date"] }}
-            </td>
-        </tr>
-        <tr class="even">
-            <th>Current date:</th>
-            <td>
-                {{ server["info"]["game_date"] }}
             </td>
         </tr>
         <tr class="odd">
             <th>NewGRFs in use:</th>
             <td>
-                {{ server["info"]["num_grfs"] }}
+                {{ server["info"]["newgrfs"]|length }}
             </td>
         </tr>
     </tbody>
