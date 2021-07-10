@@ -31,7 +31,7 @@
 {% for server in servers %}
     <tr class="{{ loop.cycle('odd', 'even') }}">
         <td class="image">
-            {% if server['info']['dedicated'] == 1 %}
+            {% if server['info']['is_dedicated'] == 1 %}
                 <img src="/static/img/server-dedicated.png" alt="Dedicated" title="Dedicated">
             {% else %}
                 <img src="/static/img/server-client.png" alt="Non-Dedicated" title="Non-Dedicated">
@@ -40,7 +40,7 @@
         <td>
             <div class="nowrap" style="width: 562px;">
                 <a href="/server/{{ server['server_id'] }}">
-                    {{ server['info']['server_name'] }}
+                    {{ server['info']['name'] }}
                 </a>
             </div>
         </td>
@@ -52,7 +52,7 @@
         </td>
         <td>
             <div class="nowrap" style="width: 120px;">
-                <a href="/listing/{{ server['info']['server_revision'] }}">{{ server['info']['server_revision'] }}</a>
+                <a href="/listing/{{ server['info']['openttd_version'] }}">{{ server['info']['openttd_version'] }}</a>
             </div>
         </td>
         <td class="image">
@@ -61,7 +61,7 @@
             {% endif %}
         </td>
         <td class="image">
-            {% if server['info']['num_grfs'] > 0 %}
+            {% if server['info']['newgrfs']|length > 0 %}
                 <img src="/static/img/server-grf.png" alt="GRF" title="NewGRFs Required">
             {% endif %}
         </td>

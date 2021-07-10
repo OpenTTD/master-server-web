@@ -10,44 +10,6 @@ from ..helpers import (
     template,
 )
 
-LANGUAGES = {
-    0: "All",
-    1: "English",
-    2: "German",
-    3: "French",
-    4: "Brazillian",
-    5: "Bulgarian",
-    6: "Chinese",
-    7: "Czech",
-    8: "Danish",
-    9: "Dutch",
-    10: "Esperanto",
-    11: "Finnish",
-    12: "Hungarian",
-    13: "Icelandic",
-    14: "Italian",
-    15: "Japanese",
-    16: "Korean",
-    17: "Lithuanian",
-    18: "Norwegian",
-    19: "Polish",
-    20: "Portuguese",
-    21: "Romanian",
-    22: "Russian",
-    23: "Slovak",
-    24: "Slovenian",
-    25: "Spanish",
-    26: "Swedish",
-    27: "Turkish",
-    28: "Ukranian",
-    29: "Afrikaans",
-    30: "Croatian",
-    31: "Catalan",
-    32: "Estonian",
-    33: "Galician",
-    34: "Greek",
-    35: "Latvian",
-}
 MAPSETS = {
     0: "Temperate",
     1: "Arctic",
@@ -174,7 +136,7 @@ def _split_version(raw_version):
 
 def _sort_servers(servers):
     servers.sort(
-        key=lambda x: _split_version(x["info"]["server_revision"])
+        key=lambda x: _split_version(x["info"]["openttd_version"])
         + [x["info"]["clients_on"], x["info"]["companies_on"]],
         reverse=True,
     )
@@ -197,7 +159,7 @@ def _list_servers(filter):
 
     servers = _server_list_cache["servers"]
     if filter:
-        servers = [server for server in servers if server["info"]["server_revision"].startswith(filter)]
+        servers = [server for server in servers if server["info"]["openttd_version"].startswith(filter)]
 
     expire = datetime.utcfromtimestamp(_server_list_cache["expire"]).strftime("%Y-%m-%d %H:%M:%S") + " UTC"
     clients = sum([server["info"]["clients_on"] for server in servers])
@@ -212,7 +174,6 @@ def _list_servers(filter):
         servers_ipv4=servers_ipv4,
         servers_ipv6=servers_ipv6,
         filter=filter,
-        languages=LANGUAGES,
         mapsets=MAPSETS,
     )
 
@@ -248,4 +209,4 @@ def server_entry(server_id):
 
     expire = datetime.utcfromtimestamp(_server_entry_cache[server_id]["expire"]).strftime("%Y-%m-%d %H:%M:%S") + " UTC"
 
-    return template("server_entry.html", server=server, expire=expire, languages=LANGUAGES, mapsets=MAPSETS)
+    return template("server_entry.html", server=server, expire=expire, mapsets=MAPSETS)
