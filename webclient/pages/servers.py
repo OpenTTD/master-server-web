@@ -90,10 +90,6 @@ def _date_to_string(date):
 
 
 def _fix_server_info(server):
-    # Set the server_id to the one based on the IPv4 or, if not available, to
-    # the IPv6 variant.
-    server["server_id"] = server.get("ipv4", server.get("ipv6"))["server_id"]
-
     # Make dates human readable.
     server["info"]["start_date"] = _date_to_string(server["info"]["start_date"])
     server["info"]["game_date"] = _date_to_string(server["info"]["game_date"])
