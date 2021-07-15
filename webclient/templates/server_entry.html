@@ -6,6 +6,14 @@
 <p class="cached">This information is cached till {{ expire }}.</p>
 <table id="server-info-table">
     <tbody>
+        {% if server["server_id"][0] == "+" %}
+        <tr class="odd">
+            <th>Invite code:</th>
+            <td>
+                {{ server["server_id"] }}
+            </td>
+        </tr>
+        {% else %}
         <tr class="odd">
             <th>Server address(es):</th>
             <td>
@@ -18,6 +26,7 @@
                 {% endif %}
             </td>
         </tr>
+        {% endif %}
         <tr class="even">
             <th>Server version:</th>
             <td>
