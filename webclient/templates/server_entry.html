@@ -98,19 +98,23 @@
         <tr class="even">
             <th>Gamescript:</th>
             <td>
-                {% if server["info"]["gamescript_version"] and server["info"]["gamescript_version"] != GAMESCRIPT_VERSION_NONE %}
-                    {{ server["info"]["gamescript_name"] }} (v{{ server["info"]["gamescript_version"] }})
-                {% else %}
+                {% if server["info"]["gamescript_version"] is none %}
+                    Unknown
+                {% elif server["info"]["gamescript_version"] == GAMESCRIPT_VERSION_NONE %}
                     None
+                {% else %}
+                    {{ server["info"]["gamescript_name"] }} (v{{ server["info"]["gamescript_version"] }})
                 {% endif %}
             </td>
         </tr>
+        {% if server["info"]["newgrfs"] is not none %}
         <tr class="odd">
             <th>NewGRFs in use:</th>
             <td>
                 {{ server["info"]["newgrfs"]|length }}
             </td>
         </tr>
+        {% endif %}
     </tbody>
 </table>
 {% endblock %}
