@@ -10,6 +10,7 @@ from ..helpers import (
     template,
 )
 
+GAMESCRIPT_VERSION_NONE = 4294967295  # (int32)-1 as uint32
 MAPSETS = {
     0: "Temperate",
     1: "Arctic",
@@ -165,6 +166,7 @@ def _list_servers(filter):
         servers_ipv6=servers_ipv6,
         filter=filter,
         mapsets=MAPSETS,
+        GAMESCRIPT_VERSION_NONE=GAMESCRIPT_VERSION_NONE,
     )
 
 
@@ -199,4 +201,10 @@ def server_entry(server_id):
 
     expire = datetime.utcfromtimestamp(_server_entry_cache[server_id]["expire"]).strftime("%Y-%m-%d %H:%M:%S") + " UTC"
 
-    return template("server_entry.html", server=server, expire=expire, mapsets=MAPSETS)
+    return template(
+        "server_entry.html",
+        server=server,
+        expire=expire,
+        mapsets=MAPSETS,
+        GAMESCRIPT_VERSION_NONE=GAMESCRIPT_VERSION_NONE,
+    )

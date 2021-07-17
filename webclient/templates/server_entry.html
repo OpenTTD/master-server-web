@@ -95,6 +95,16 @@
                 {% endif %}
             </td>
         </tr>
+        <tr class="even">
+            <th>Gamescript:</th>
+            <td>
+                {% if server["info"]["gamescript_version"] and server["info"]["gamescript_version"] != GAMESCRIPT_VERSION_NONE %}
+                    {{ server["info"]["gamescript_name"] }} (v{{ server["info"]["gamescript_version"] }})
+                {% else %}
+                    None
+                {% endif %}
+            </td>
+        </tr>
         <tr class="odd">
             <th>NewGRFs in use:</th>
             <td>
