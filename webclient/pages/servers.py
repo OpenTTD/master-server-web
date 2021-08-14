@@ -113,13 +113,21 @@ def _split_version(raw_version):
 
     # Check if this is most likely an official release and sort it correctly.
     version_parts = version.split(".")
+    # Example: 1.11.0
     if len(version_parts) == 3 and all([p.isdecimal() for p in version_parts]):
         return [priority] + [int(p) for p in version_parts] + ["official"] + ["-".join(extra)]
+    # Example: 12.0
+    if len(version_parts) == 2 and all([p.isdecimal() for p in version_parts]):
+        return [priority] + [int(p) for p in version_parts] + [0, "official"] + ["-".join(extra)]
 
-    # Check if this is a patchpack like jgrpp-0.31.0.
+    # Check if this is a patchpack.
     version_parts = extra[0].split(".")
+    # Example: jgrpp-0.31.0
     if len(version_parts) == 3 and all([p.isdecimal() for p in version_parts]):
         return [priority] + [int(p) for p in version_parts] + [version] + ["-".join(extra[1:])]
+    # Example: mypatchpack-151.0
+    if len(version_parts) == 2 and all([p.isdecimal() for p in version_parts]):
+        return [priority] + [int(p) for p in version_parts] + [0, version] + ["-".join(extra[1:])]
 
     # We did not recognize what this is, so just fall back to string comparison.
     return [0, 0, 0, 0, "unknown", raw_version]
