@@ -136,7 +136,7 @@ def _split_version(raw_version):
 def _sort_servers(servers):
     servers.sort(
         key=lambda x: _split_version(x["info"]["openttd_version"])
-        + [x["info"]["clients_on"], x["info"]["companies_on"]],
+        + ["0" if x["info"]["use_password"] else "1", x["info"]["clients_on"], x["info"]["companies_on"]],
         reverse=True,
     )
 
