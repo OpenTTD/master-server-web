@@ -1,0 +1,5 @@
+👋 Welcome to OpenTTD's Master Server Web devcontainer!
+
+🚂 Press F5 start the webserver (using production API). Under "Ports" you can open the browser to visit the website.
+
+📝 After that, edit away!

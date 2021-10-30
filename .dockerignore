@@ -1,5 +1,5 @@
 __pycache__/
 *.pyc
-/.env
+/.venv/
 /.git/**
 /node_modules

@@ -18,13 +18,22 @@ It works together with [master-server](https://github.com/OpenTTD/master-server)
 
 This front-end is written in Python 3.7 with Flask.
 
-## Usage
+### Running via devcontainer / VSCode Remote Containers / GitHub Codespaces
+
+If you open up this repository with VSCode Remote Containers or GitHub Codespaces, it will automatically set up the development environment for you.
+
+Press F5 to start the webserver using the production API.
+Go to "Ports" to open the website.
+
+Happy editing!
+
+### Running locally
 
 To start it, you are advised to first create a virtualenv:
 
 ```bash
-python3 -m venv .env
-.env/bin/pip install -r requirements.txt
+python3 -m venv .venv
+.venv/bin/pip install -r requirements.txt
 ```
 
 After this, you can run the flask application by running:
