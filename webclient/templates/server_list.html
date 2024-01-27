@@ -20,6 +20,7 @@
         <th class="name">Name</th>
         <th class="clients">Clients</th>
         <th class="companies">Companies</th>
+        <th class="play-time">Play time</th>
         <th class="version">Version</th>
         <th class="icon-password"></th>
         <th class="icon-grf"></th>
@@ -50,6 +51,9 @@
         </td>
         <td>
             {{ server['info']['companies_on'] }} / {{ server['info']['companies_max'] }}
+        </td>
+        <td>
+            {{ server['info']['time_playing'] }}
         </td>
         <td>
             <div class="nowrap" style="width: 120px;">
