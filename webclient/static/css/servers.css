@@ -54,7 +54,7 @@
 	width: 15px;
 }
 #server-table .name {
-	width: 562px;
+	width: 492px;
 }
 #server-table .address {
 	width: 100px;
@@ -63,6 +63,9 @@
 	width: 70px;
 }
 #server-table .companies {
+	width: 70px;
+}
+#server-table .play-time {
 	width: 70px;
 }
 #server-table .version {

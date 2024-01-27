@@ -56,36 +56,42 @@
             </td>
         </tr>
         <tr class="even">
+            <th>Play time:</th>
+            <td>
+                {{ server["info"]["time_playing"] }}
+            </td>
+        </tr>
+        <tr class="odd">
             <th>Clients:</th>
             <td>
                 {{ server["info"]["clients_on"] }} / {{ server["info"]["clients_max"] }}
             </td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <th>Companies:</th>
             <td>
                 {{ server["info"]["companies_on"] }} / {{ server["info"]["companies_max"] }}
             </td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <th>Spectators:</th>
             <td>
                 {{ server["info"]["spectators_on"] }}
             </td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <th>Landscape:</th>
             <td>
                 {{ mapsets[server["info"]["map_type"]] }}
             </td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <th>Map size:</th>
             <td>
                 {{ server["info"]["map_width"] }} x {{ server["info"]["map_height"] }}
             </td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <th>Dedicated server:</th>
             <td>
                 {% if server["info"]["is_dedicated"] == 1 %}
@@ -95,7 +101,7 @@
                 {% endif %}
             </td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <th>Gamescript:</th>
             <td>
                 {% if server["info"]["gamescript_version"] is none %}
@@ -108,7 +114,7 @@
             </td>
         </tr>
         {% if server["info"]["newgrfs"] is not none %}
-        <tr class="odd">
+        <tr class="even">
             <th>NewGRFs in use:</th>
             <td>
                 {{ server["info"]["newgrfs"]|length }}

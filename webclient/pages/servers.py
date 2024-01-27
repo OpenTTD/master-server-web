@@ -95,6 +95,9 @@ def _fix_server_info(server):
     server["info"]["start_date"] = _date_to_string(server["info"]["start_date"])
     server["info"]["game_date"] = _date_to_string(server["info"]["game_date"])
 
+    minutes = int(server["info"]["ticks_playing"] / 37 / 60)
+    server["info"]["time_playing"] = f"{minutes // 60}h {minutes % 60}m"
+
 
 def _split_version(raw_version):
     """
