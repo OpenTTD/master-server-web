@@ -7,7 +7,7 @@ It works together with [master-server](https://github.com/OpenTTD/master-server)
 
 ## Development
 
-This front-end is written in Python 3.7 with Flask.
+This front-end is written in Python 3.11 with Flask.
 
 ## Usage
 
