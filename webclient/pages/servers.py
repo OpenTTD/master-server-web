@@ -193,8 +193,6 @@ def servers(filter):
 
 @app.route("/server/<server_id>")
 def server_entry(server_id):
-    global _server_entry_cache
-
     if _server_entry_cache[server_id] is None or time.time() > _server_entry_cache[server_id]["expire"]:
         data = api_get(("server", server_id))
         server = data["server"]
